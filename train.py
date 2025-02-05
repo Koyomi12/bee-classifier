@@ -1,12 +1,15 @@
 import torch
 import torch.nn as nn
+from tensor_board import plot_classes_preds
+from torch.utils.tensorboard.writer import SummaryWriter
 
 from datasets import train_dataloader, validation_dataloader
 from hyperparameters import epochs, learning_rate
 from model import Model
 
 
-def train(dataloader, model, loss_fn, optimizer):
+def train(dataloader, model, loss_fn, optimizer, writer, epoch):
+    running_loss = 0
     size = len(dataloader.dataset)
     model.train()
     for batch, (images, labels) in enumerate(dataloader):
@@ -21,9 +24,22 @@ def train(dataloader, model, loss_fn, optimizer):
         optimizer.step()
         optimizer.zero_grad()
 
+        running_loss += loss.item()
+
         if batch % 100 == 0:
             loss, current = loss.item(), (batch + 1) * len(images)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+
+            writer.add_scalar(
+                "training loss", running_loss / 100, epoch * len(dataloader) + batch
+            )
+            writer.add_figure(
+                "predictions vs. actuals",
+                plot_classes_preds(model, images, labels),
+                global_step=epoch * len(dataloader) + batch,
+            )
+
+    writer.add_scalar("loss x epoch", running_loss / len(dataloader), epoch)
 
 
 def test(dataloader, model, loss_fn):
@@ -50,9 +66,11 @@ if __name__ == "__main__":
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    for t in range(epochs):
-        print(f"Epoch {t + 1}\n-------------------------------")
-        train(train_dataloader, model, criterion, optimizer)
+    writer = SummaryWriter()
+    for e in range(epochs):
+        print(f"Epoch {e + 1}\n-------------------------------")
+        train(train_dataloader, model, criterion, optimizer, writer, e)
         test(validation_dataloader, model, criterion)
+    writer.close()
     print("Done!")
     torch.save(model.state_dict(), "output/model.pth")
