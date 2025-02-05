@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
 
-from model import Model
 from datasets import train_dataloader, validation_dataloader
+from hyperparameters import epochs, learning_rate
+from model import Model
 
 
 def train(dataloader, model, loss_fn, optimizer):
@@ -47,9 +48,8 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = Model().to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    epochs = 5
     for t in range(epochs):
         print(f"Epoch {t + 1}\n-------------------------------")
         train(train_dataloader, model, criterion, optimizer)

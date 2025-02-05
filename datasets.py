@@ -5,6 +5,8 @@ import torchvision.datasets as datasets
 import torchvision.transforms.v2 as transforms
 from torch.utils.data import DataLoader
 
+from hyperparameters import batch_size
+
 train_transform = transforms.Compose(
     [
         transforms.RandomHorizontalFlip(p=0.5),
@@ -42,8 +44,6 @@ test_dataset = datasets.ImageFolder(
     ),
     test_transform,
 )
-
-batch_size = 32
 
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 validation_dataloader = DataLoader(
