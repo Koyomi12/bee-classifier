@@ -8,6 +8,7 @@ dependencies = [
     "imageio>=2.37.0",
     "matplotlib>=3.10.0",
     "opencv-python>=4.11.0.86",
+    "pandas>=2.2.3",
     "pyqt6>=6.8.0",
     "torch>=2.5.1",
     "torchvision>=0.20.1",
