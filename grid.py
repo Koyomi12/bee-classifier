@@ -3,9 +3,9 @@ import numpy as np
 import torch
 
 from datasets import test_dataloader
+from inference import class_labels
 from model import TaggedBeeClassificationModel
 
-classes = ("marked", "unmarked")
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = TaggedBeeClassificationModel()
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
             figure.add_subplot(rows, cols, i + 1)
             plt.title(
-                f"{classes[label]} | {classes[prediction]}",
+                f"{class_labels[label]} | {class_labels[prediction]}",
                 fontsize=8,
                 color="red" if label != prediction else "black",
             )
