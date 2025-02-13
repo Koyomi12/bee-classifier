@@ -1,5 +1,7 @@
-import imageio.v3 as iio
 from pathlib import Path
+
+import imageio.v3 as iio
+from imageio.typing import ImageResource
 
 
 def copy_frames(root, destination):
@@ -14,11 +16,18 @@ def copy_frames(root, destination):
             destination.write_bytes(source.read_bytes())
 
 
-def create_cropped_image(file, destination_dir, x, w, y, h):
+def create_cropped_image(
+    file: ImageResource,
+    destination_dir: Path | str,
+    x: int,
+    w: int,
+    y: int,
+    h: int,
+):
     image = iio.imread(file, index=0)
     cropped_image = image[x : x + w, y : y + h]
     Path(destination_dir).mkdir(parents=True, exist_ok=True)
-    filename = file.name.replace("-frames.apng", ".png")
+    filename = file.name.replace("/frames.apng", ".png").replace("/", "-")
     iio.imwrite(Path(destination_dir) / filename, cropped_image)
 
 
