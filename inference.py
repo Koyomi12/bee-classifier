@@ -311,8 +311,16 @@ def df_to_csv(df: pd.DataFrame, path: Path):
 
 if __name__ == "__main__":
     # 2024/8/2024-08-29.zip
-    zipped_dir = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped/")
-    cropped_image_dir = Path("/home/niklas/Documents/dev/uni/bees/bee-data/cropped/")
+    zipped_dir = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
+    if not zipped_dir.is_dir():
+        zipped_dir = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped/")
+
+    cropped_image_dir = Path("/home/niklas/bee-data/cropped/")
+    if not cropped_image_dir.is_dir():
+        cropped_image_dir = Path(
+            "/home/niklas/Documents/dev/uni/bees/bee-data/cropped/"
+        )
+
     create_cropped_images(
         zipped_dir,
         cropped_image_dir,
