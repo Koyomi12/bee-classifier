@@ -77,6 +77,8 @@ def create_cropped_images(
     output_height: int,
 ):
     for path_to_zip in tqdm(zips_dir.rglob("*")):
+        if not str(path_to_zip).endswith(".zip"):
+            continue
         zip_filename = path_to_zip.name.replace(".zip", "")
         current_target_dir = Path(target_dir) / zip_filename
         current_target_dir.mkdir(parents=True, exist_ok=True)
