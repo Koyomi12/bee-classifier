@@ -8,8 +8,8 @@ from PIL import Image
 
 from inference import TaggedBeeClassifierConvNet, class_labels, dict_to_csv
 
-if __name__ == "__main__":
-    # get samples
+
+def get_samples():
     paths = list(Path("/home/niklas/bee-data/cropped/").rglob("*"))
     samples = random.sample(paths, 100)
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
@@ -21,7 +21,8 @@ if __name__ == "__main__":
     data = {"sample_path": samples, "class": predictions}
     dict_to_csv(data, "output/samples.csv")
 
-    # extract samples
+
+def extract_samples():
     destination_dir = "output/samples/"
     with open("output/samples.csv", newline="") as csv_file:
         reader = csv.DictReader(csv_file)
@@ -50,3 +51,8 @@ if __name__ == "__main__":
                     destination_dir.mkdir(parents=True, exist_ok=True)
                     archive.extract(file, destination_dir)
                     continue
+
+
+if __name__ == "__main__":
+    # get_samples()
+    extract_samples()
