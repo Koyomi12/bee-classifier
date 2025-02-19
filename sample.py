@@ -23,7 +23,7 @@ def get_samples():
 
 
 def extract_samples():
-    destination_dir = "output/samples/"
+    destination_dir = Path("output/samples/")
     with open("output/samples.csv", newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
