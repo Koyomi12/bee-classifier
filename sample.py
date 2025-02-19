@@ -35,7 +35,7 @@ def extract_samples():
             # month_pattern = r"-(\d{2})-"
             month_pattern = r"-0([1-9])|(1[0-2])-"
             date_pattern = r"20\d{2}-\d{2}-\d{2}"
-            time_num_pattern = r"\d{2}_\d{2}_\d{2}.png"
+            time_num_pattern = r"\d+_\d+_\d+.png"
             year = re.search(year_pattern, sample_path).group()
             month = re.search(month_pattern, sample_path).group(1)
             date = re.search(date_pattern, sample_path).group()
