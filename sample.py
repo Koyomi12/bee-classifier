@@ -40,7 +40,7 @@ def extract_samples():
             month = re.search(month_pattern, sample_path).group(1)
             date = re.search(date_pattern, sample_path).group()
 
-            root = "mnt/trove/wdd/wdd_output_2024/cam0/"
+            root = Path("mnt/trove/wdd/wdd_output_2024/cam0/")
             zip_path = Path.joinpath(root, year, month, date + ".zip")
             archive = zipfile.ZipFile(zip_path)
             for file in archive.namelist():
