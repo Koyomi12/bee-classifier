@@ -30,7 +30,6 @@ def extract_samples():
             sample_path = row["sample_path"]
             # "/home/niklas/bee-data/cropped/2024-08-29/10_47_14.png"
             # "mnt/trove/wdd/wdd_output_2024/cam0/2024/8/2024-08-29.zip"
-            root = "mnt/trove/wdd/wdd_output_2024/cam0/"
             year_pattern = r"20\d{2}"
             after_year_lookahead = r"(?=-\d{2}-\d{2}/\d{2}_\d{2}_\d{2}.png)"
             # TODO: add lookbehinds and lookaheads
@@ -41,6 +40,7 @@ def extract_samples():
             month = re.search(month_pattern, sample_path).group(1)
             date = re.search(date_pattern, sample_path).group()
 
+            root = "mnt/trove/wdd/wdd_output_2024/cam0/"
             zip_path = Path.joinpath(root, year, month, date + ".zip")
             archive = zipfile.ZipFile(zip_path)
             for file in archive.namelist():
