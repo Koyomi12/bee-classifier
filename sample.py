@@ -35,12 +35,14 @@ def extract_samples():
             # month_pattern = r"-(\d{2})-"
             month_pattern = r"-0([1-9])|(1[0-2])-"
             date_pattern = r"20\d{2}-\d{2}-\d{2}"
-            rest_pattern = r"\d{2}_\d{2}_\d{2}.png"
+            time_num_pattern = r"\d{2}_\d{2}_\d{2}.png"
             year = re.search(year_pattern, sample_path).group()
             month = re.search(month_pattern, sample_path).group(1)
             date = re.search(date_pattern, sample_path).group()
-            rest = re.search(rest_pattern, sample_path).group()
-            sample_filename = re.sub("_", "/", rest).replace(".png", "/frames.apng")
+            time_number = re.search(time_num_pattern, sample_path).group()
+            sample_filename = re.sub("_", "/", time_number).replace(
+                ".png", "/frames.apng"
+            )
 
             root = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
             zip_path = root.joinpath(year, month, date + ".zip")
