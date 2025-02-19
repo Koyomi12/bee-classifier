@@ -23,7 +23,6 @@ def get_samples():
 
 
 def extract_samples():
-    destination_dir = Path("output/samples/")
     with open("output/samples.csv", newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
@@ -48,6 +47,7 @@ def extract_samples():
                 rest = re.search(rest_pattern, sample_path).group()
                 sample_filename = re.sub("_", "/", rest).replace(".png", "/frames.apng")
                 if file == sample_filename:
+                    destination_dir = Path("output/samples/" + date)
                     destination_dir.mkdir(parents=True, exist_ok=True)
                     archive.extract(file, destination_dir)
                     continue
