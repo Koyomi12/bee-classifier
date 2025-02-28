@@ -42,7 +42,7 @@ class TaggedBeeClassifierConvNet:
         with torch.inference_mode():
             output = self.model(image_tensor)
             prediction, confidence = self.model.postprocess_predictions(output)
-            return prediction, confidence
+            return prediction[0], confidence[0]
 
     def classify_images_from_directory(self, image_dir: Path | str, batch_size):
         transform = transforms.Compose(
