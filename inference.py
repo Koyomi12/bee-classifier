@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 from model import TaggedBeeClassificationModel
 
-class_labels = ("marked", "unmarked")
+class_labels = ("tagged", "untagged")
 
 
 class TaggedBeeClassifierConvNet:
@@ -159,7 +159,7 @@ def old_generate_plots(
                         confidences.append(confidence)
                         paths.append(Path(path_to_zip.stem) / filename)
 
-                        if class_labels[prediction[0]] == "marked":
+                        if class_labels[prediction[0]] == "tagged":
                             current_idx = last_tagged_idx
                             last_tagged_idx += 1
                         else:
