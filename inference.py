@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 from model import TaggedBeeClassificationModel
 
-class_labels = ("marked", "unmarked")
+class_labels = ("tagged", "untagged")
 
 
 class TaggedBeeClassifierConvNet:
@@ -42,7 +42,7 @@ class TaggedBeeClassifierConvNet:
         with torch.inference_mode():
             output = self.model(image_tensor)
             prediction, confidence = self.model.postprocess_predictions(output)
-            return prediction, confidence
+            return prediction[0], confidence[0]
 
     def classify_images_from_directory(self, image_dir: Path | str, batch_size):
         transform = transforms.Compose(
@@ -159,7 +159,7 @@ def old_generate_plots(
                         confidences.append(confidence)
                         paths.append(Path(path_to_zip.stem) / filename)
 
-                        if class_labels[prediction[0]] == "marked":
+                        if class_labels[prediction[0]] == "tagged":
                             current_idx = last_tagged_idx
                             last_tagged_idx += 1
                         else:
