@@ -12,3 +12,4 @@ wheels/
 data/
 output/visualizations/
 output/samples/
+.ipynb_checkpoints
