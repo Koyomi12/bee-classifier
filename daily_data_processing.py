@@ -21,6 +21,7 @@ def process_daily_data(
     day_dance_ids = []
     waggle_ids = []
     predictions = []
+    confidences = []
     count = 1
     video_filenames = list(
         filter(lambda filename: filename.endswith(".apng"), zip_file.namelist())
@@ -38,8 +39,9 @@ def process_daily_data(
         with zip_file.open(video_filename) as video_file:
             with Image.open(video_file) as image:
                 cropped_image = crop_center(image, output_width, output_height)
-                prediction, _ = classifier.classify_single_image(cropped_image)
+                prediction, confidence = classifier.classify_single_image(cropped_image)
                 predictions.append(prediction)
+                confidences.append(confidence)
         day_dance_id = f"{count:04d}"
         day_dance_ids.append(day_dance_id)
         # Save video file
@@ -59,7 +61,9 @@ def process_daily_data(
         "category_label": np.array(
             [class_labels[predictions[i]] for i, _ in enumerate(predictions)]
         ),
+        "confidence": np.array(confidences),
         "corrected_category": np.empty_like(day_dance_ids),
+        "corrected_category_label": np.empty_like(day_dance_ids),
     }
     return data
 
