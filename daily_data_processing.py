@@ -1,11 +1,11 @@
 import json
-import pandas as pd
 from pathlib import Path
 from zipfile import ZipFile
 
 import numpy as np
-from tqdm import tqdm
+import pandas as pd
 from PIL import Image
+from tqdm import tqdm
 
 from crop_images import crop_center
 from inference import TaggedBeeClassifierConvNet, class_labels
@@ -20,7 +20,6 @@ TAGGED = "tagged"
 
 def main():
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
-
     # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
     for zip_path in ZIPS_PATH.rglob("*"):
         if not zip_path.suffix == ".zip":
@@ -30,16 +29,16 @@ def main():
         if daily_target.exists():
             continue
         with ZipFile(zip_path) as zip_file:
-            tagged_target_dir = daily_target / TAGGED_DANCE_DIR
-            untagged_target_dir = daily_target / UNTAGGED_DANCE_DIR
             day_dance_ids = []
             waggle_ids = []
             predictions = []
             confidences = []
+
+            tagged_target_dir = daily_target / TAGGED_DANCE_DIR
+            untagged_target_dir = daily_target / UNTAGGED_DANCE_DIR
             video_filenames = list(
                 filter(lambda filename: filename.endswith(".apng"), zip_file.namelist())
             )
-
             for count, video_filename in enumerate(tqdm(video_filenames), start=1):
                 # Find matching metadata file
                 metadata_filename = video_filename.replace("frames.apng", "waggle.json")
