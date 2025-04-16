@@ -11,8 +11,8 @@ from crop_images import crop_center
 from inference import TaggedBeeClassifierConvNet, class_labels
 
 OUTPUT_WIDTH = OUTPUT_HEIGHT = 50
-TARGET = Path("/home/niklas/Documents/dev/uni/bees/bee-data/tmp")
-ZIPS_PATH = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped")
+ZIPS_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024")
+TARGET = Path("/home/niklas/processed-bee-data")
 TAGGED_DANCE_DIR = "tagged-dances"
 UNTAGGED_DANCE_DIR = "untagged-dances"
 TAGGED = "tagged"
@@ -20,7 +20,6 @@ TAGGED = "tagged"
 
 def main():
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
-    # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
     for zip_path in ZIPS_PATH.rglob("*"):
         if not zip_path.suffix == ".zip":
             continue
