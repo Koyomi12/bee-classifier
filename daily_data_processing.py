@@ -22,11 +22,11 @@ def main():
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
 
     # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
-    for path_to_zip in tqdm(PATH_TO_ALL_ZIPS.rglob("*")):
-        if not str(path_to_zip).endswith(".zip"):
+    for zip_path in tqdm(PATH_TO_ALL_ZIPS.rglob("*")):
+        if not str(zip_path).endswith(".zip"):
             continue
-        daily_target = TARGET / path_to_zip.name.replace(".zip", "")
-        with ZipFile(path_to_zip) as zip_file:
+        daily_target = TARGET / zip_path.stem
+        with ZipFile(zip_path) as zip_file:
             data = process_daily_data(zip_file, daily_target, classifier)
             df = pd.DataFrame(data)
             df.to_csv(daily_target / "data.csv", index=False)
