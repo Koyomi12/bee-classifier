@@ -18,7 +18,7 @@ def get_samples():
         with Image.open(sample) as image:
             prediction, confidence = classifier.classify_single_image(image)
             predictions.append(class_labels[prediction[0]])
-    data = {"sample_path": samples, "class": predictions}
+    data = {"sample_path": samples, "category_label": predictions}
     dict_to_csv(data, "output/samples.csv")
 
 
