@@ -1,9 +1,11 @@
 import json
+import tempfile
 from pathlib import Path
 from zipfile import ZipFile
 
 import numpy as np
 import pandas as pd
+from ffmpeg import FFmpeg
 from PIL import Image
 from tqdm import tqdm
 
@@ -64,10 +66,14 @@ def main():
                 # "12/44/8/frames.apng", -> "0001.apng". This leads to a flat
                 # directory structure.
                 zip_file.getinfo(video_filename).filename = day_dance_id + ".apng"
-                if class_labels[prediction] == TAGGED:
-                    extract_file(video_filename, zip_file, tagged_target_dir)
-                else:
-                    extract_file(video_filename, zip_file, untagged_target_dir)
+                with tempfile.TemporaryDirectory() as tmp_dir:
+                    zip_file.extract(video_filename, tmp_dir)
+                    input = Path(tmp_dir) / (day_dance_id + ".apng")
+                    if class_labels[prediction] == TAGGED:
+                        output = tagged_target_dir / (day_dance_id + ".mp4")
+                    else:
+                        output = untagged_target_dir / (day_dance_id + ".mp4")
+                    encode_video(input, output)
 
             data = {
                 "day_dance_id": np.array(day_dance_ids),
@@ -88,10 +94,15 @@ def main():
             df.to_csv(daily_target / "data.csv", index=False)
 
 
-def extract_file(filename: str, zip_file: ZipFile, target_dir: Path):
-    """Extracts a file from a zip file into a directory."""
-    target_dir.mkdir(parents=True, exist_ok=True)
-    zip_file.extract(filename, target_dir)
+def encode_video(input: Path, output: Path):
+    output.parent.mkdir(parents=True, exist_ok=True)
+    ffmpeg = (
+        FFmpeg()
+        .option("y")
+        .input(str(input))
+        .output(str(output), {"codec:v": "libx264"}, crf=18, pix_fmt="yuv420p")
+    )
+    ffmpeg.execute()
 
 
 if __name__ == "__main__":
