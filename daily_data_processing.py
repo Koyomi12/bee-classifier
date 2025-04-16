@@ -23,7 +23,7 @@ def main():
 
     # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
     for zip_path in tqdm(PATH_TO_ALL_ZIPS.rglob("*")):
-        if not str(zip_path).endswith(".zip"):
+        if not zip_path.suffix == ".zip":
             continue
         daily_target = TARGET / zip_path.stem
         with ZipFile(zip_path) as zip_file:
