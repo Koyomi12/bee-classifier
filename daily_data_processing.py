@@ -26,6 +26,9 @@ def main():
         if not zip_path.suffix == ".zip":
             continue
         daily_target = TARGET / zip_path.stem
+        # Ignore days that were already processed.
+        if daily_target.exists():
+            continue
         with ZipFile(zip_path) as zip_file:
             tagged_target_dir = daily_target / TAGGED_DANCE_DIR
             untagged_target_dir = daily_target / UNTAGGED_DANCE_DIR
