@@ -10,19 +10,22 @@ from PIL import Image
 from crop_images import crop_center
 from inference import TaggedBeeClassifierConvNet, class_labels
 
-output_width = output_height = 50
+OUTPUT_WIDTH = OUTPUT_HEIGHT = 50
+TARGET = Path("/home/niklas/Documents/dev/uni/bees/bee-data/tmp")
+PATH_TO_ALL_ZIPS = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped")
+TAGGED_DANCE_DIR = "tagged-dances"
+UNTAGGED_DANCE_DIR = "untagged-dances"
+TAGGED = "tagged"
 
 
 def main():
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
 
     # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
-    target = Path("/home/niklas/Documents/dev/uni/bees/bee-data/tmp")
-    path_to_all_zips = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped")
-    for path_to_zip in tqdm(path_to_all_zips.rglob("*")):
+    for path_to_zip in tqdm(PATH_TO_ALL_ZIPS.rglob("*")):
         if not str(path_to_zip).endswith(".zip"):
             continue
-        daily_target = target / path_to_zip.name.replace(".zip", "")
+        daily_target = TARGET / path_to_zip.name.replace(".zip", "")
         with ZipFile(path_to_zip) as zip_file:
             data = process_daily_data(zip_file, daily_target, classifier)
             df = pd.DataFrame(data)
@@ -32,8 +35,8 @@ def main():
 def process_daily_data(
     zip_file: ZipFile, target_dir: Path, classifier: TaggedBeeClassifierConvNet
 ):
-    tagged_target_dir = target_dir / "tagged-dances"
-    untagged_target_dir = target_dir / "untagged-dances"
+    tagged_target_dir = target_dir / TAGGED_DANCE_DIR
+    untagged_target_dir = target_dir / UNTAGGED_DANCE_DIR
     day_dance_ids = []
     waggle_ids = []
     predictions = []
@@ -54,7 +57,7 @@ def process_daily_data(
             waggle_ids.append(json_data["waggle_id"])
         with zip_file.open(video_filename) as video_file:
             with Image.open(video_file) as image:
-                cropped_image = crop_center(image, output_width, output_height)
+                cropped_image = crop_center(image, OUTPUT_WIDTH, OUTPUT_HEIGHT)
                 prediction, confidence = classifier.classify_single_image(cropped_image)
                 predictions.append(prediction)
                 confidences.append(confidence)
@@ -62,7 +65,7 @@ def process_daily_data(
         day_dance_ids.append(day_dance_id)
         # Save video file
         zip_file.getinfo(video_filename).filename = day_dance_id + ".apng"
-        if class_labels[prediction] == "tagged":
+        if class_labels[prediction] == TAGGED:
             tagged_target_dir.mkdir(parents=True, exist_ok=True)
             zip_file.extract(video_filename, tagged_target_dir)
         else:
