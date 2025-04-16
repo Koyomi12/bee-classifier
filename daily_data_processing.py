@@ -57,6 +57,11 @@ def main():
                 day_dance_id = f"{count:04d}"
                 day_dance_ids.append(day_dance_id)
                 # Save video file
+                # Because we don't want to keep the nested directory structure
+                # which the files within the zip file are in, we assign a new
+                # name to the filename attribute of a video file, i.e.
+                # "12/44/8/frames.apng", -> "0001.apng". This leads to a flat
+                # directory structure.
                 zip_file.getinfo(video_filename).filename = day_dance_id + ".apng"
                 if class_labels[prediction] == TAGGED:
                     extract_file(video_filename, zip_file, tagged_target_dir)
