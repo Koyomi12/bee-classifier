@@ -33,12 +33,11 @@ def main():
             waggle_ids = []
             predictions = []
             confidences = []
-            count = 1
             video_filenames = list(
                 filter(lambda filename: filename.endswith(".apng"), zip_file.namelist())
             )
 
-            for video_filename in tqdm(video_filenames):
+            for count, video_filename in enumerate(tqdm(video_filenames), start=1):
                 # Find matching metadata file
                 metadata_filename = video_filename.replace("frames.apng", "waggle.json")
                 with zip_file.open(metadata_filename) as metadata_file:
@@ -63,7 +62,6 @@ def main():
                     extract_file(video_filename, zip_file, tagged_target_dir)
                 else:
                     extract_file(video_filename, zip_file, untagged_target_dir)
-                count += 1
 
             data = {
                 "day_dance_id": np.array(day_dance_ids),
