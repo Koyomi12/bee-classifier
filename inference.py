@@ -16,7 +16,9 @@ from tqdm import tqdm
 
 from model import TaggedBeeClassificationModel
 
-class_labels = ("tagged", "untagged")
+TAGGED = "tagged"
+UNTAGGED = "untagged"
+class_labels = (TAGGED, UNTAGGED)
 
 
 class TaggedBeeClassifierConvNet:
