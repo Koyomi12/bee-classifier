@@ -22,7 +22,7 @@ TAGGED = "tagged"
 
 def main():
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
-    for zip_path in ZIPS_PATH.rglob("*"):
+    for zip_path in tqdm(list(ZIPS_PATH.rglob("*"))):
         if not zip_path.suffix == ".zip":
             continue
         daily_target = TARGET / zip_path.stem
