@@ -13,6 +13,22 @@ from inference import TaggedBeeClassifierConvNet, class_labels
 output_width = output_height = 50
 
 
+def main():
+    classifier = TaggedBeeClassifierConvNet("output/model.pth")
+
+    # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
+    target = Path("/home/niklas/Documents/dev/uni/bees/bee-data/tmp")
+    path_to_all_zips = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped")
+    for path_to_zip in tqdm(path_to_all_zips.rglob("*")):
+        if not str(path_to_zip).endswith(".zip"):
+            continue
+        daily_target = target / path_to_zip.name.replace(".zip", "")
+        with ZipFile(path_to_zip) as zip_file:
+            data = process_daily_data(zip_file, daily_target, classifier)
+            df = pd.DataFrame(data)
+            df.to_csv(daily_target / "data.csv", index=False)
+
+
 def process_daily_data(
     zip_file: ZipFile, target_dir: Path, classifier: TaggedBeeClassifierConvNet
 ):
@@ -69,16 +85,4 @@ def process_daily_data(
 
 
 if __name__ == "__main__":
-    classifier = TaggedBeeClassifierConvNet("output/model.pth")
-
-    # path_to_all_zips = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
-    target = Path("/home/niklas/Documents/dev/uni/bees/bee-data/tmp")
-    path_to_all_zips = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped")
-    for path_to_zip in tqdm(path_to_all_zips.rglob("*")):
-        if not str(path_to_zip).endswith(".zip"):
-            continue
-        daily_target = target / path_to_zip.name.replace(".zip", "")
-        with ZipFile(path_to_zip) as zip_file:
-            data = process_daily_data(zip_file, daily_target, classifier)
-            df = pd.DataFrame(data)
-            df.to_csv(daily_target / "data.csv", index=False)
+    main()
