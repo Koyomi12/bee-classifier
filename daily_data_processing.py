@@ -66,11 +66,9 @@ def process_daily_data(
         # Save video file
         zip_file.getinfo(video_filename).filename = day_dance_id + ".apng"
         if class_labels[prediction] == TAGGED:
-            tagged_target_dir.mkdir(parents=True, exist_ok=True)
-            zip_file.extract(video_filename, tagged_target_dir)
+            extract_file(video_filename, zip_file, tagged_target_dir)
         else:
-            untagged_target_dir.mkdir(parents=True, exist_ok=True)
-            zip_file.extract(video_filename, untagged_target_dir)
+            extract_file(video_filename, zip_file, untagged_target_dir)
         count += 1
 
     data = {
@@ -85,6 +83,12 @@ def process_daily_data(
         "corrected_category_label": np.empty_like(day_dance_ids),
     }
     return data
+
+
+def extract_file(filename: str, zip_file: ZipFile, target_dir: Path):
+    """Extracts a file from a zip file into a directory."""
+    target_dir.mkdir(parents=True, exist_ok=True)
+    zip_file.extract(filename, target_dir)
 
 
 if __name__ == "__main__":
