@@ -30,6 +30,7 @@ def main():
         daily_target = TARGET / zip_path.stem
         # Ignore days that were already processed.
         if daily_target.exists():
+            print(f"{daily_target} already exists.")
             continue
         with ZipFile(zip_path) as zip_file:
             day_dance_ids = []
