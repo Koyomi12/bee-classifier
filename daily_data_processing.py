@@ -39,6 +39,7 @@ def main():
 
             tagged_target_dir = daily_target / TAGGED_DANCE_DIR
             untagged_target_dir = daily_target / UNTAGGED_DANCE_DIR
+
             video_filenames = list(
                 filter(lambda filename: filename.endswith(".apng"), zip_file.namelist())
             )
@@ -50,21 +51,19 @@ def main():
                     # We only care about waggles, so filter the rest out. Also,
                     # the model thinks the bright pixels of the wooden frame on
                     # the comb are tags, so we ignore those detections.
-                    if json_data[
-                        "predicted_class_label"
-                    ] != "waggle" or is_wood_in_frame(json_data):
-                        continue
-                    waggle_ids.append(json_data["waggle_id"])
+                if json_data["predicted_class_label"] != "waggle" or is_wood_in_frame(
+                    json_data
+                ):
+                    continue
                 with zip_file.open(video_filename) as video_file:
                     with Image.open(video_file) as image:
                         cropped_image = crop_center(image, IMAGE_SIZE, IMAGE_SIZE)
-                        prediction, confidence = classifier.classify_single_image(
-                            cropped_image
-                        )
-                        predictions.append(prediction)
-                        confidences.append(confidence)
+                prediction, confidence = classifier.classify_single_image(cropped_image)
                 day_dance_id = f"{count:04d}"
                 day_dance_ids.append(day_dance_id)
+                waggle_ids.append(json_data["waggle_id"])
+                predictions.append(prediction)
+                confidences.append(confidence)
                 # Save video file
                 # Because we don't want to keep the nested directory structure
                 # which the files within the zip file are in, we assign a new
