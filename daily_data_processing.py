@@ -36,6 +36,7 @@ def main():
             waggle_ids = []
             predictions = []
             confidences = []
+            dance_types = []
 
             tagged_target_dir = daily_target / TAGGED_DANCE_DIR
             untagged_target_dir = daily_target / UNTAGGED_DANCE_DIR
@@ -64,6 +65,7 @@ def main():
                 waggle_ids.append(json_data["waggle_id"])
                 predictions.append(prediction)
                 confidences.append(confidence)
+                dance_types.append(json_data["predicted_class_label"])
                 # Save video file
                 # Because we don't want to keep the nested directory structure
                 # which the files within the zip file are in, we assign a new
@@ -92,6 +94,8 @@ def main():
                 "confidence": np.array(confidences),
                 "corrected_category": np.empty_like(day_dance_ids),
                 "corrected_category_label": np.empty_like(day_dance_ids),
+                "dance_type": np.array(dance_types),
+                "corrected_dance_type": np.empty_like(day_dance_ids),
             }
 
             # Save to csv file
