@@ -18,13 +18,13 @@ if __name__ == "__main__":
     unmarked_images = list(unmarked_image_dir.iterdir())
 
     assert len(marked_images) == 397 == len(unmarked_images)
-    num_train_images = 277
-    num_test_images = 60
-    num_validation_images = 60
+    num_train_images_per_class = 277
+    num_test_images_per_class = 60
+    num_validation_images_per_class = 60
 
     # move train images
-    train_marked = random.sample(marked_images, k=num_train_images)
-    train_unmarked = random.sample(unmarked_images, k=num_train_images)
+    train_marked = random.sample(marked_images, k=num_train_images_per_class)
+    train_unmarked = random.sample(unmarked_images, k=num_train_images_per_class)
 
     train_marked_image_dir = Path.joinpath(image_dir, "train", "marked")
     train_marked_image_dir.mkdir(parents=True, exist_ok=True)
@@ -42,8 +42,8 @@ if __name__ == "__main__":
     marked_images = list(marked_image_dir.iterdir())
     unmarked_images = list(unmarked_image_dir.iterdir())
 
-    test_marked = random.sample(marked_images, k=num_test_images)
-    test_unmarked = random.sample(unmarked_images, k=num_test_images)
+    test_marked = random.sample(marked_images, k=num_test_images_per_class)
+    test_unmarked = random.sample(unmarked_images, k=num_test_images_per_class)
 
     test_marked_image_dir = Path.joinpath(image_dir, "test", "marked")
     test_marked_image_dir.mkdir(parents=True, exist_ok=True)
