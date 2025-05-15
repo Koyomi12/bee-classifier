@@ -9,7 +9,30 @@ from hyperparameters import epochs, learning_rate
 from model import TaggedBeeClassificationModel
 
 
-def train(dataloader, model, loss_fn, optimizer):
+def main():
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = TaggedBeeClassificationModel().to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+    train_loss_values = []
+    validation_loss_values = []
+    validation_accuracy_values = []
+    for t in range(epochs):
+        print(f"Epoch {t + 1}\n-------------------------------")
+        train_losses = train(train_dataloader, model, criterion, optimizer, device)
+        train_loss_values.append(sum(train_losses) / len(train_losses))
+        validation_loss, validation_accuracy = validate(
+            validation_dataloader, model, criterion, device
+        )
+        validation_loss_values.append(validation_loss)
+        validation_accuracy_values.append(validation_accuracy)
+    print("Done!")
+    save_plots(train_loss_values, validation_loss_values, validation_accuracy_values)
+    torch.save(model.state_dict(), "output/model.pth")
+
+
+def train(dataloader, model, loss_fn, optimizer, device):
     epoch_losses = []
     model.train()
     for batch, (images, labels) in enumerate(dataloader):
@@ -32,7 +55,7 @@ def train(dataloader, model, loss_fn, optimizer):
     return epoch_losses
 
 
-def validate(dataloader, model, loss_fn):
+def validate(dataloader, model, loss_fn, device):
     size = len(dataloader.dataset)
     num_batches = len(dataloader)
     model.eval()
@@ -67,23 +90,4 @@ def save_plots(train_loss_values, validation_loss_values, validation_accuracy_va
 
 
 if __name__ == "__main__":
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = TaggedBeeClassificationModel().to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-
-    train_loss_values = []
-    validation_loss_values = []
-    validation_accuracy_values = []
-    for t in range(epochs):
-        print(f"Epoch {t + 1}\n-------------------------------")
-        train_losses = train(train_dataloader, model, criterion, optimizer)
-        train_loss_values.append(sum(train_losses) / len(train_losses))
-        validation_loss, validation_accuracy = validate(
-            validation_dataloader, model, criterion
-        )
-        validation_loss_values.append(validation_loss)
-        validation_accuracy_values.append(validation_accuracy)
-    print("Done!")
-    save_plots(train_loss_values, validation_loss_values, validation_accuracy_values)
-    torch.save(model.state_dict(), "output/model.pth")
+    main()
