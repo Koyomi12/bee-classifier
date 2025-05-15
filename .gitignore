@@ -9,7 +9,6 @@ wheels/
 # Virtual environments
 .venv
 
-output/visualizations/
+output/visualizations/daily-cropped-image-grids
 output/samples/
-output/samples.csv
 .ipynb_checkpoints

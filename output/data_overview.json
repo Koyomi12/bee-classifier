@@ -1,0 +1,574 @@
+{
+  "2024-08-14": {
+    "waggle": {
+      "detections": 974,
+      "videos": 974,
+      "wood filter": 10
+    },
+    "activating": {
+      "detections": 34,
+      "videos": 9,
+      "wood filter": 2
+    },
+    "ventilating": {
+      "detections": 5,
+      "videos": 4,
+      "wood filter": 1
+    },
+    "other": {
+      "detections": 749,
+      "videos": 20,
+      "wood filter": 45
+    }
+  },
+  "2024-08-15": {
+    "waggle": {
+      "detections": 1163,
+      "videos": 1163,
+      "wood filter": 9
+    },
+    "activating": {
+      "detections": 97,
+      "videos": 10,
+      "wood filter": 7
+    },
+    "ventilating": {
+      "detections": 4,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 2097,
+      "videos": 21,
+      "wood filter": 147
+    }
+  },
+  "2024-08-16": {
+    "waggle": {
+      "detections": 738,
+      "videos": 738,
+      "wood filter": 62
+    },
+    "activating": {
+      "detections": 63,
+      "videos": 7,
+      "wood filter": 9
+    },
+    "ventilating": {
+      "detections": 10,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 3559,
+      "videos": 36,
+      "wood filter": 251
+    }
+  },
+  "2024-08-22": {
+    "waggle": {
+      "detections": 202,
+      "videos": 202,
+      "wood filter": 4
+    },
+    "activating": {
+      "detections": 881,
+      "videos": 89,
+      "wood filter": 34
+    },
+    "ventilating": {
+      "detections": 70,
+      "videos": 2,
+      "wood filter": 2
+    },
+    "other": {
+      "detections": 3744,
+      "videos": 38,
+      "wood filter": 197
+    }
+  },
+  "2024-08-23": {
+    "waggle": {
+      "detections": 745,
+      "videos": 745,
+      "wood filter": 19
+    },
+    "activating": {
+      "detections": 152,
+      "videos": 16,
+      "wood filter": 9
+    },
+    "ventilating": {
+      "detections": 20,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 5643,
+      "videos": 57,
+      "wood filter": 230
+    }
+  },
+  "2024-08-24": {
+    "waggle": {
+      "detections": 1312,
+      "videos": 1312,
+      "wood filter": 45
+    },
+    "activating": {
+      "detections": 623,
+      "videos": 63,
+      "wood filter": 56
+    },
+    "ventilating": {
+      "detections": 37,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 5833,
+      "videos": 59,
+      "wood filter": 385
+    }
+  },
+  "2024-08-25": {
+    "waggle": {
+      "detections": 234,
+      "videos": 234,
+      "wood filter": 33
+    },
+    "activating": {
+      "detections": 245,
+      "videos": 25,
+      "wood filter": 12
+    },
+    "ventilating": {
+      "detections": 18,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 3120,
+      "videos": 32,
+      "wood filter": 214
+    }
+  },
+  "2024-08-26": {
+    "waggle": {
+      "detections": 485,
+      "videos": 485,
+      "wood filter": 8
+    },
+    "activating": {
+      "detections": 75,
+      "videos": 8,
+      "wood filter": 6
+    },
+    "ventilating": {
+      "detections": 25,
+      "videos": 1,
+      "wood filter": 1
+    },
+    "other": {
+      "detections": 4096,
+      "videos": 41,
+      "wood filter": 316
+    }
+  },
+  "2024-08-27": {
+    "waggle": {
+      "detections": 1403,
+      "videos": 1403,
+      "wood filter": 136
+    },
+    "activating": {
+      "detections": 149,
+      "videos": 15,
+      "wood filter": 16
+    },
+    "ventilating": {
+      "detections": 48,
+      "videos": 1,
+      "wood filter": 1
+    },
+    "other": {
+      "detections": 6186,
+      "videos": 62,
+      "wood filter": 514
+    }
+  },
+  "2024-08-28": {
+    "waggle": {
+      "detections": 1235,
+      "videos": 1235,
+      "wood filter": 44
+    },
+    "activating": {
+      "detections": 289,
+      "videos": 29,
+      "wood filter": 50
+    },
+    "ventilating": {
+      "detections": 28,
+      "videos": 1,
+      "wood filter": 2
+    },
+    "other": {
+      "detections": 6038,
+      "videos": 61,
+      "wood filter": 254
+    }
+  },
+  "2024-08-29": {
+    "waggle": {
+      "detections": 2562,
+      "videos": 2562,
+      "wood filter": 67
+    },
+    "activating": {
+      "detections": 175,
+      "videos": 18,
+      "wood filter": 20
+    },
+    "ventilating": {
+      "detections": 20,
+      "videos": 1,
+      "wood filter": 3
+    },
+    "other": {
+      "detections": 5786,
+      "videos": 58,
+      "wood filter": 382
+    }
+  },
+  "2024-08-30": {
+    "waggle": {
+      "detections": 1802,
+      "videos": 1802,
+      "wood filter": 70
+    },
+    "activating": {
+      "detections": 262,
+      "videos": 27,
+      "wood filter": 18
+    },
+    "ventilating": {
+      "detections": 38,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 4706,
+      "videos": 48,
+      "wood filter": 296
+    }
+  },
+  "2024-08-31": {
+    "waggle": {
+      "detections": 696,
+      "videos": 696,
+      "wood filter": 36
+    },
+    "activating": {
+      "detections": 249,
+      "videos": 25,
+      "wood filter": 13
+    },
+    "ventilating": {
+      "detections": 51,
+      "videos": 2,
+      "wood filter": 2
+    },
+    "other": {
+      "detections": 6543,
+      "videos": 66,
+      "wood filter": 371
+    }
+  },
+  "2024-09-02": {
+    "waggle": {
+      "detections": 722,
+      "videos": 722,
+      "wood filter": 31
+    },
+    "activating": {
+      "detections": 181,
+      "videos": 19,
+      "wood filter": 5
+    },
+    "ventilating": {
+      "detections": 51,
+      "videos": 2,
+      "wood filter": 6
+    },
+    "other": {
+      "detections": 9375,
+      "videos": 94,
+      "wood filter": 361
+    }
+  },
+  "2024-09-03": {
+    "waggle": {
+      "detections": 991,
+      "videos": 991,
+      "wood filter": 125
+    },
+    "activating": {
+      "detections": 174,
+      "videos": 18,
+      "wood filter": 10
+    },
+    "ventilating": {
+      "detections": 6,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 4846,
+      "videos": 49,
+      "wood filter": 383
+    }
+  },
+  "2024-09-04": {
+    "waggle": {
+      "detections": 1684,
+      "videos": 1684,
+      "wood filter": 112
+    },
+    "activating": {
+      "detections": 245,
+      "videos": 25,
+      "wood filter": 22
+    },
+    "ventilating": {
+      "detections": 5,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 3793,
+      "videos": 38,
+      "wood filter": 269
+    }
+  },
+  "2024-09-05": {
+    "waggle": {
+      "detections": 1055,
+      "videos": 1055,
+      "wood filter": 79
+    },
+    "activating": {
+      "detections": 201,
+      "videos": 21,
+      "wood filter": 16
+    },
+    "ventilating": {
+      "detections": 21,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 6373,
+      "videos": 64,
+      "wood filter": 256
+    }
+  },
+  "2024-09-06": {
+    "waggle": {
+      "detections": 943,
+      "videos": 943,
+      "wood filter": 38
+    },
+    "activating": {
+      "detections": 315,
+      "videos": 32,
+      "wood filter": 17
+    },
+    "ventilating": {
+      "detections": 28,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 7851,
+      "videos": 79,
+      "wood filter": 416
+    }
+  },
+  "2024-09-07": {
+    "waggle": {
+      "detections": 2926,
+      "videos": 2926,
+      "wood filter": 160
+    },
+    "activating": {
+      "detections": 449,
+      "videos": 45,
+      "wood filter": 37
+    },
+    "ventilating": {
+      "detections": 49,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 7699,
+      "videos": 77,
+      "wood filter": 630
+    }
+  },
+  "2024-09-08": {
+    "waggle": {
+      "detections": 3599,
+      "videos": 3599,
+      "wood filter": 120
+    },
+    "activating": {
+      "detections": 431,
+      "videos": 44,
+      "wood filter": 42
+    },
+    "ventilating": {
+      "detections": 45,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 11615,
+      "videos": 117,
+      "wood filter": 841
+    }
+  },
+  "2024-09-09": {
+    "waggle": {
+      "detections": 552,
+      "videos": 552,
+      "wood filter": 12
+    },
+    "activating": {
+      "detections": 35,
+      "videos": 4,
+      "wood filter": 0
+    },
+    "ventilating": {
+      "detections": 30,
+      "videos": 1,
+      "wood filter": 0
+    },
+    "other": {
+      "detections": 1141,
+      "videos": 12,
+      "wood filter": 50
+    }
+  },
+  "2024-09-10": {
+    "waggle": {
+      "detections": 2184,
+      "videos": 2184,
+      "wood filter": 47
+    },
+    "activating": {
+      "detections": 900,
+      "videos": 90,
+      "wood filter": 17
+    },
+    "ventilating": {
+      "detections": 189,
+      "videos": 4,
+      "wood filter": 14
+    },
+    "other": {
+      "detections": 4398,
+      "videos": 44,
+      "wood filter": 285
+    }
+  },
+  "2024-09-12": {
+    "waggle": {
+      "detections": 363,
+      "videos": 363,
+      "wood filter": 7
+    },
+    "activating": {
+      "detections": 43,
+      "videos": 5,
+      "wood filter": 3
+    },
+    "ventilating": {
+      "detections": 145,
+      "videos": 3,
+      "wood filter": 1
+    },
+    "other": {
+      "detections": 1091,
+      "videos": 11,
+      "wood filter": 21
+    }
+  },
+  "2024-09-17": {
+    "waggle": {
+      "detections": 2327,
+      "videos": 2327,
+      "wood filter": 29
+    },
+    "activating": {
+      "detections": 468,
+      "videos": 47,
+      "wood filter": 27
+    },
+    "ventilating": {
+      "detections": 51,
+      "videos": 2,
+      "wood filter": 3
+    },
+    "other": {
+      "detections": 4391,
+      "videos": 44,
+      "wood filter": 260
+    }
+  },
+  "2024-09-18": {
+    "waggle": {
+      "detections": 2153,
+      "videos": 2153,
+      "wood filter": 41
+    },
+    "activating": {
+      "detections": 76,
+      "videos": 8,
+      "wood filter": 9
+    },
+    "ventilating": {
+      "detections": 26,
+      "videos": 1,
+      "wood filter": 3
+    },
+    "other": {
+      "detections": 4942,
+      "videos": 50,
+      "wood filter": 247
+    }
+  },
+  "2024-09-19": {
+    "waggle": {
+      "detections": 1211,
+      "videos": 1211,
+      "wood filter": 59
+    },
+    "activating": {
+      "detections": 18,
+      "videos": 2,
+      "wood filter": 3
+    },
+    "ventilating": {
+      "detections": 9,
+      "videos": 1,
+      "wood filter": 2
+    },
+    "other": {
+      "detections": 1811,
+      "videos": 19,
+      "wood filter": 232
+    }
+  }
+}
