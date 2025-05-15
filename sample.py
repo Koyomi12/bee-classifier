@@ -10,9 +10,10 @@ from inference import TaggedBeeClassifierConvNet, class_labels, dict_to_csv
 
 ZIPPED_WDD_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
 
-def get_samples():
-    paths = list(Path("/home/niklas/bee-data/cropped/").rglob("*"))
-    samples = random.sample(paths, 100)
+
+def get_samples(cropped_images_path: Path, k=100):
+    paths = list(cropped_images_path.rglob("*"))
+    samples = random.sample(paths, k)
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
     predictions = []
     for sample in samples:
@@ -23,8 +24,8 @@ def get_samples():
     dict_to_csv(data, "output/samples.csv")
 
 
-def extract_samples():
-    with open("output/samples.csv", newline="") as csv_file:
+def extract_samples(samples_csv_path: Path, output_path: Path):
+    with open(samples_csv_path, newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             sample_path = row["sample_path"]
@@ -49,12 +50,14 @@ def extract_samples():
             archive = zipfile.ZipFile(zip_path)
             for file in archive.namelist():
                 if file == sample_filename:
-                    destination_dir = Path("output/samples/" + date)
+                    destination_dir = output_path / date
                     destination_dir.mkdir(parents=True, exist_ok=True)
                     archive.extract(file, destination_dir)
                     continue
 
 
 if __name__ == "__main__":
-    # get_samples()
-    extract_samples()
+    # get_samples(Path("/home/niklas/bee-data/cropped/"), 100)
+    samples_csv_path = Path.cwd() / "output" / "samples.csv"
+    destination_path = Path.cwd() / "output" / "samples"
+    extract_samples(samples_csv_path, destination_path)
