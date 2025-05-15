@@ -13,7 +13,6 @@ def main():
     assert len(tagged_images) == 397 == len(untagged_images)
     num_train_images_per_class = 277
     num_test_images_per_class = 60
-    num_validation_images_per_class = 60
 
     # move train images
     train_tagged = random.sample(tagged_images, k=num_train_images_per_class)
