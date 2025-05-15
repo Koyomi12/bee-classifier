@@ -28,21 +28,15 @@ test_transform = transforms.Compose(
 )
 
 train_dataset = datasets.ImageFolder(
-    Path(
-        "/home/niklas/Documents/dev/uni/bees/bee-classifier/data/cropped/50x50_1/train"
-    ),
+    Path.cwd() / "data" / "cropped" / "50x50" / "train",
     train_transform,
 )
 validation_dataset = datasets.ImageFolder(
-    Path(
-        "/home/niklas/Documents/dev/uni/bees/bee-classifier/data/cropped/50x50_1/validation"
-    ),
+    Path.cwd() / "data" / "cropped" / "50x50" / "validation",
     test_transform,
 )
 test_dataset = datasets.ImageFolder(
-    Path(
-        "/home/niklas/Documents/dev/uni/bees/bee-classifier/data/cropped/50x50_1/test"
-    ),
+    Path.cwd() / "data" / "cropped" / "50x50" / "test",
     test_transform,
 )
 

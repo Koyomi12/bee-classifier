@@ -15,7 +15,7 @@ from inference import TaggedBeeClassifierConvNet, class_labels
 
 IMAGE_SIZE = 50
 ZIPS_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024")
-TARGET = Path("/home/niklas/processed-bee-data")
+TARGET = Path("/home/local_storage/processed-bee-data")
 TAGGED_DANCE_DIR = "tagged-dances"
 UNTAGGED_DANCE_DIR = "untagged-dances"
 TAGGED = "tagged"

@@ -4,7 +4,7 @@ from pathlib import Path
 
 def main():
     """Splits dataset into train, validation and test sets."""
-    image_dir = Path.joinpath(Path.cwd(), "data", "cropped", "50x50_1")
+    image_dir = Path.joinpath(Path.cwd(), "data", "cropped", "50x50")
     tagged_image_dir = image_dir / "tagged"
     untagged_image_dir = image_dir / "untagged"
 
