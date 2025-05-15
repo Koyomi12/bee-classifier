@@ -1,9 +1,9 @@
 from pathlib import Path
 from zipfile import ZipFile
 
-import tqdm
 from PIL import Image
 from PIL.Image import Image as PILImage
+from tqdm import tqdm
 
 
 def main():
