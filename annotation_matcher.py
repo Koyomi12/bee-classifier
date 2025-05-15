@@ -205,7 +205,7 @@ def main():
                     ],
                 }
             )
-    with open("output/find_waggles.json", "w") as fp:
+    with open("output/matching_waggles.json", "w") as fp:
         json.dump(results, fp, indent=2)
 
 
