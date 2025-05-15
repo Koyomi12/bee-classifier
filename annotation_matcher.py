@@ -27,7 +27,7 @@ CUT_VIDEO_DIR = Path("/mnt/local_storage/dance_videos_tunnel_2024/")
 HD_CAM_RESOLUTION = (3520, 4608)
 HD_CAM_FPS = 15
 
-TIME_DELTA = datetime.timedelta(seconds=1)
+TIME_DELTA = datetime.timedelta(seconds=0.5)
 COORDINATE_EPSILON = 100
 
 
