@@ -11,54 +11,54 @@ def move_file(source, destination):
 
 if __name__ == "__main__":
     image_dir = Path.joinpath(Path.cwd(), "data", "cropped", "50x50_1")
-    marked_image_dir = image_dir / "marked"
-    unmarked_image_dir = image_dir / "unmarked"
+    tagged_image_dir = image_dir / "tagged"
+    untagged_image_dir = image_dir / "untagged"
 
-    marked_images = list(marked_image_dir.iterdir())
-    unmarked_images = list(unmarked_image_dir.iterdir())
+    tagged_images = list(tagged_image_dir.iterdir())
+    untagged_images = list(untagged_image_dir.iterdir())
 
-    assert len(marked_images) == 397 == len(unmarked_images)
+    assert len(tagged_images) == 397 == len(untagged_images)
     num_train_images_per_class = 277
     num_test_images_per_class = 60
     num_validation_images_per_class = 60
 
     # move train images
-    train_marked = random.sample(marked_images, k=num_train_images_per_class)
-    train_unmarked = random.sample(unmarked_images, k=num_train_images_per_class)
+    train_tagged = random.sample(tagged_images, k=num_train_images_per_class)
+    train_untagged = random.sample(untagged_images, k=num_train_images_per_class)
 
-    train_marked_image_dir = Path.joinpath(image_dir, "train", "marked")
-    train_marked_image_dir.mkdir(parents=True, exist_ok=True)
+    train_tagged_image_dir = Path.joinpath(image_dir, "train", "tagged")
+    train_tagged_image_dir.mkdir(parents=True, exist_ok=True)
 
-    train_unmarked_image_dir = Path.joinpath(image_dir, "train", "unmarked")
-    train_unmarked_image_dir.mkdir(parents=True, exist_ok=True)
+    train_untagged_image_dir = Path.joinpath(image_dir, "train", "untagged")
+    train_untagged_image_dir.mkdir(parents=True, exist_ok=True)
 
-    for file in train_marked:
-        move_file(file, train_marked_image_dir / file.name)
+    for file in train_tagged:
+        move_file(file, train_tagged_image_dir / file.name)
 
-    for file in train_unmarked:
-        move_file(file, train_unmarked_image_dir / file.name)
+    for file in train_untagged:
+        move_file(file, train_untagged_image_dir / file.name)
 
     # move test images
-    marked_images = list(marked_image_dir.iterdir())
-    unmarked_images = list(unmarked_image_dir.iterdir())
+    tagged_images = list(tagged_image_dir.iterdir())
+    untagged_images = list(untagged_image_dir.iterdir())
 
-    test_marked = random.sample(marked_images, k=num_test_images_per_class)
-    test_unmarked = random.sample(unmarked_images, k=num_test_images_per_class)
+    test_tagged = random.sample(tagged_images, k=num_test_images_per_class)
+    test_untagged = random.sample(untagged_images, k=num_test_images_per_class)
 
-    test_marked_image_dir = Path.joinpath(image_dir, "test", "marked")
-    test_marked_image_dir.mkdir(parents=True, exist_ok=True)
+    test_tagged_image_dir = Path.joinpath(image_dir, "test", "tagged")
+    test_tagged_image_dir.mkdir(parents=True, exist_ok=True)
 
-    test_unmarked_image_dir = Path.joinpath(image_dir, "test", "unmarked")
-    test_unmarked_image_dir.mkdir(parents=True, exist_ok=True)
+    test_untagged_image_dir = Path.joinpath(image_dir, "test", "untagged")
+    test_untagged_image_dir.mkdir(parents=True, exist_ok=True)
 
-    for file in test_marked:
-        move_file(file, test_marked_image_dir / file.name)
+    for file in test_tagged:
+        move_file(file, test_tagged_image_dir / file.name)
 
-    for file in test_unmarked:
-        move_file(file, test_unmarked_image_dir / file.name)
+    for file in test_untagged:
+        move_file(file, test_untagged_image_dir / file.name)
 
     # move validation images
     (image_dir / "validation").mkdir(parents=True, exist_ok=True)
 
-    marked_image_dir.rename(Path.joinpath(image_dir, "validation", "marked"))
-    unmarked_image_dir.rename(Path.joinpath(image_dir, "validation", "unmarked"))
+    tagged_image_dir.rename(Path.joinpath(image_dir, "validation", "tagged"))
+    untagged_image_dir.rename(Path.joinpath(image_dir, "validation", "untagged"))
