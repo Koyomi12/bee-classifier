@@ -5,24 +5,18 @@ from PIL import Image
 from PIL.Image import Image as PILImage
 from tqdm import tqdm
 
+from daily_data_processing import IMAGE_SIZE
+
+ZIPPED_DIR = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
+CROPPED_IMAGE_DIR = Path("/home/niklas/bee-data/cropped/")
+
 
 def main():
-    zipped_dir = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
-    if not zipped_dir.is_dir():
-        zipped_dir = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped/")
-
-    cropped_image_dir = Path("/home/niklas/bee-data/cropped/")
-
-    if not cropped_image_dir.is_dir():
-        cropped_image_dir = Path(
-            "/home/niklas/Documents/dev/uni/bees/bee-data/cropped/"
-        )
-
     create_cropped_images(
-        zipped_dir,
-        cropped_image_dir,
-        50,
-        50,
+        ZIPPED_DIR,
+        CROPPED_IMAGE_DIR,
+        IMAGE_SIZE,
+        IMAGE_SIZE,
     )
 
 
