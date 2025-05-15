@@ -6,6 +6,26 @@ from PIL import Image
 from PIL.Image import Image as PILImage
 
 
+def main():
+    zipped_dir = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
+    if not zipped_dir.is_dir():
+        zipped_dir = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped/")
+
+    cropped_image_dir = Path("/home/niklas/bee-data/cropped/")
+
+    if not cropped_image_dir.is_dir():
+        cropped_image_dir = Path(
+            "/home/niklas/Documents/dev/uni/bees/bee-data/cropped/"
+        )
+
+    create_cropped_images(
+        zipped_dir,
+        cropped_image_dir,
+        50,
+        50,
+    )
+
+
 def create_cropped_images(
     zips_dir: Path | str,
     target_dir: Path | str,
@@ -41,20 +61,4 @@ def crop_center(image: PILImage, output_width: int, output_height: int):
 
 
 if __name__ == "__main__":
-    zipped_dir = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
-    if not zipped_dir.is_dir():
-        zipped_dir = Path("/home/niklas/Documents/dev/uni/bees/bee-data/zipped/")
-
-    cropped_image_dir = Path("/home/niklas/bee-data/cropped/")
-
-    if not cropped_image_dir.is_dir():
-        cropped_image_dir = Path(
-            "/home/niklas/Documents/dev/uni/bees/bee-data/cropped/"
-        )
-
-    create_cropped_images(
-        zipped_dir,
-        cropped_image_dir,
-        50,
-        50,
-    )
+    main()

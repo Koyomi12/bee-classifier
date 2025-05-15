@@ -4,7 +4,8 @@ import torch
 from datasets import test_dataloader
 from model import TaggedBeeClassificationModel
 
-if __name__ == "__main__":
+
+def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = TaggedBeeClassificationModel()
     model.load_state_dict(torch.load("output/model.pth", weights_only=True))
@@ -48,3 +49,7 @@ if __name__ == "__main__":
         )
         print(f"ROC AUC score: {roc_auc_score}")
         print(sklearn.metrics.classification_report(y_true, y_pred, digits=2))
+
+
+if __name__ == "__main__":
+    main()
