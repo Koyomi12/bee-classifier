@@ -12,6 +12,10 @@ ZIPPED_WDD_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
 
 
 def get_samples(cropped_images_path: Path, k=100):
+    """
+    Randomly samples and classifies k cropped images, then writes the results
+    to a samples.csv file.
+    """
     paths = list(cropped_images_path.rglob("*"))
     samples = random.sample(paths, k)
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
@@ -25,6 +29,10 @@ def get_samples(cropped_images_path: Path, k=100):
 
 
 def extract_samples(samples_csv_path: Path, output_path: Path):
+    """
+    Reads the samples.csv file, finds the data in the zipped WDD archives
+    and extracts the video snippets to the output path.
+    """
     with open(samples_csv_path, newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
