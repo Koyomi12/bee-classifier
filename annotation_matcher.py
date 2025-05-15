@@ -32,6 +32,12 @@ COORDINATE_EPSILON = 100
 
 
 def main():
+    """
+    Matches manually and automatically annotated waggle dances.
+
+    Returns a list of candidates from WDD data that match given data from
+    manual annotations.
+    """
     tunnel_bees_df = pd.read_excel(MANUALLY_ANNOTATED_DATA_PATH, header=1)
     results = dict()
     for cut_video_rel_path_str in tqdm(tunnel_bees_df["video_name"].unique()):
