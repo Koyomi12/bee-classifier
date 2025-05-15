@@ -2,14 +2,7 @@ import random
 from pathlib import Path
 
 
-def move_file(source, destination):
-    if destination.exists():
-        print(f"{destination} already exists")
-    else:
-        source.replace(destination)
-
-
-if __name__ == "__main__":
+def main():
     image_dir = Path.joinpath(Path.cwd(), "data", "cropped", "50x50_1")
     tagged_image_dir = image_dir / "tagged"
     untagged_image_dir = image_dir / "untagged"
@@ -62,3 +55,14 @@ if __name__ == "__main__":
 
     tagged_image_dir.rename(Path.joinpath(image_dir, "validation", "tagged"))
     untagged_image_dir.rename(Path.joinpath(image_dir, "validation", "untagged"))
+
+
+def move_file(source, destination):
+    if destination.exists():
+        print(f"{destination} already exists")
+    else:
+        source.replace(destination)
+
+
+if __name__ == "__main__":
+    main()
