@@ -63,7 +63,7 @@ def save_plots(train_loss_values, validation_loss_values, validation_accuracy_va
     ax1.xaxis.set_major_locator(MaxNLocator(epochs, integer=True))
     plt.xlabel("epochs")
     plt.tight_layout()
-    plt.savefig("training_graphs.png")
+    plt.savefig("output/visualizations/training_graphs.png")
 
 
 if __name__ == "__main__":

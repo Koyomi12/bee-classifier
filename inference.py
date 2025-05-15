@@ -82,7 +82,7 @@ def generate_plots_pdfs(df: pd.DataFrame):
     df_dict = {elem: pd.DataFrame() for elem in unique_dates}
     for key in df_dict.keys():
         df_dict[key] = df[:][df["date"] == key]
-        filename = f"output/visualizations/{key}.pdf"
+        filename = f"output/visualizations/daily-cropped-image-grids/{key}.pdf"
         pdf_pages = PdfPages(filename)
         day_df = df_dict[key]
         figures = [
