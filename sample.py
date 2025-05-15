@@ -8,6 +8,7 @@ from PIL import Image
 
 from inference import TaggedBeeClassifierConvNet, class_labels, dict_to_csv
 
+ZIPPED_WDD_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
 
 def get_samples():
     paths = list(Path("/home/niklas/bee-data/cropped/").rglob("*"))
@@ -44,8 +45,7 @@ def extract_samples():
                 ".png", "/frames.apng"
             )
 
-            root = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
-            zip_path = root.joinpath(year, month, date + ".zip")
+            zip_path = ZIPPED_WDD_PATH.joinpath(year, month, date + ".zip")
             archive = zipfile.ZipFile(zip_path)
             for file in archive.namelist():
                 if file == sample_filename:
