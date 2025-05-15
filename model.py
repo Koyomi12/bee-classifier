@@ -13,28 +13,25 @@ class TaggedBeeClassificationModel(nn.Module):
         self.conv2 = nn.Conv2d(6, 16, 5)
         self.fc1 = nn.Linear(16 * 2 * 2, 16)
         self.fc2 = nn.Linear(16, 2)
-        # self.fc1 = nn.Linear(16 * 2 * 2, 120)
-        # self.fc2 = nn.Linear(120, 84)
-        # self.fc3 = nn.Linear(84, 2)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
         x = torch.flatten(x, 1)  # flatten all dimensions except batch
-        # x = F.relu(self.fc1(x))
-        # x = F.relu(self.fc2(x))
-        # x = self.fc3(x)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
 
     @staticmethod
-    def postprocess_predictions(outputs):
+    def postprocess_predictions(outputs, numpy=True):
         probabilities = F.softmax(outputs, 1)
         predictions = torch.argmax(outputs, 1)
         confidences = probabilities[np.arange(probabilities.shape[0]), predictions]
+        tagged_probabilities = probabilities[np.arange(probabilities.shape[0]), 0]
 
-        predictions = predictions.detach().cpu().numpy()
-        confidences = confidences.detach().cpu().numpy()
+        if numpy:
+            predictions = predictions.detach().cpu().numpy()
+            confidences = confidences.detach().cpu().numpy()
+            tagged_probabilities = tagged_probabilities.detach().cpu().numpy()
 
-        return predictions, confidences
+        return predictions, confidences, tagged_probabilities
