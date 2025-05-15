@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import sklearn
 
@@ -14,16 +15,21 @@ def main():
     """
     results = {
         "total": {
-            "true_positive": 0,
-            "true_negative": 0,
-            "false_positive": 0,
-            "false_negative": 0,
+            "confusion_matrix": {
+                "true_positive": 0,
+                "true_negative": 0,
+                "false_positive": 0,
+                "false_negative": 0,
+            }
         }
     }
-    tagged_probabilities = []
-    y_true = []
+    tagged_probabilities_total = []
+    y_true_total = []
+    y_pred_total = []
     dirs = sorted(TAG_CORRECTOR_DATA.glob("*"))
     for dir in dirs:
+        tagged_probabilities = []
+        y_true = []
         data = pd.read_csv(
             dir / "data.csv",
             dtype={
@@ -78,14 +84,54 @@ def main():
             "false_positive": false_positives.shape[0],
             "false_negative": false_negatives.shape[0],
         }
-        results[dir.name] = confusion_matrix
-        results["total"]["true_positive"] += confusion_matrix["true_positive"]
-        results["total"]["true_negative"] += confusion_matrix["true_negative"]
-        results["total"]["false_positive"] += confusion_matrix["false_positive"]
-        results["total"]["false_negative"] += confusion_matrix["false_negative"]
 
-    roc_auc_score = sklearn.metrics.roc_auc_score(y_true, tagged_probabilities)
-    print(f"ROC_AUC score: {roc_auc_score}")
+        tp = confusion_matrix["true_positive"]
+        fp = confusion_matrix["false_positive"]
+        fn = confusion_matrix["false_negative"]
+        tn = confusion_matrix["true_negative"]
+
+        y_pred = tp * [1] + fp * [1] + fn * [0] + tn * [0]
+
+        precision = sklearn.metrics.precision_score(
+            y_true, y_pred, zero_division=np.nan
+        )
+        recall = sklearn.metrics.recall_score(y_true, y_pred, zero_division=np.nan)
+        f1_score = sklearn.metrics.f1_score(y_true, y_pred, zero_division=np.nan)
+        roc_auc_score = sklearn.metrics.roc_auc_score(y_true, tagged_probabilities)
+
+        results[dir.name] = dict(
+            confusion_matrix=confusion_matrix,
+            precision=precision,
+            recall=recall,
+            f1_score=f1_score,
+            roc_auc_score=roc_auc_score,
+        )
+
+        results["total"]["confusion_matrix"]["true_positive"] += tp
+        results["total"]["confusion_matrix"]["true_negative"] += tn
+        results["total"]["confusion_matrix"]["false_positive"] += fp
+        results["total"]["confusion_matrix"]["false_negative"] += fn
+
+        y_pred_total += y_pred
+        y_true_total += y_true
+        tagged_probabilities_total += tagged_probabilities
+
+    precision_total = sklearn.metrics.precision_score(
+        y_true_total, y_pred_total, zero_division=np.nan
+    )
+    recall_total = sklearn.metrics.recall_score(
+        y_true_total, y_pred_total, zero_division=np.nan
+    )
+    f1_score_total = sklearn.metrics.f1_score(
+        y_true_total, y_pred_total, zero_division=np.nan
+    )
+    roc_auc_score_total = sklearn.metrics.roc_auc_score(
+        y_true_total, tagged_probabilities_total
+    )
+    results["total"]["precision"] = precision_total
+    results["total"]["recall"] = recall_total
+    results["total"]["f1_score"] = f1_score_total
+    results["total"]["roc_auc_score"] = roc_auc_score_total
 
     with open("output/classifier_results.json", "w") as fp:
         json.dump(results, fp, indent=2)
