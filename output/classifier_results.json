@@ -1,0 +1,164 @@
+{
+  "total": {
+    "true_positive": 3664,
+    "true_negative": 26202,
+    "false_positive": 1133,
+    "false_negative": 1859
+  },
+  "2024-08-14": {
+    "true_positive": 1,
+    "true_negative": 962,
+    "false_positive": 1,
+    "false_negative": 0
+  },
+  "2024-08-15": {
+    "true_positive": 0,
+    "true_negative": 1139,
+    "false_positive": 15,
+    "false_negative": 0
+  },
+  "2024-08-16": {
+    "true_positive": 2,
+    "true_negative": 650,
+    "false_positive": 24,
+    "false_negative": 0
+  },
+  "2024-08-22": {
+    "true_positive": 7,
+    "true_negative": 185,
+    "false_positive": 5,
+    "false_negative": 1
+  },
+  "2024-08-23": {
+    "true_positive": 133,
+    "true_negative": 489,
+    "false_positive": 42,
+    "false_negative": 62
+  },
+  "2024-08-24": {
+    "true_positive": 189,
+    "true_negative": 1012,
+    "false_positive": 43,
+    "false_negative": 23
+  },
+  "2024-08-25": {
+    "true_positive": 85,
+    "true_negative": 99,
+    "false_positive": 6,
+    "false_negative": 11
+  },
+  "2024-08-26": {
+    "true_positive": 66,
+    "true_negative": 334,
+    "false_positive": 66,
+    "false_negative": 11
+  },
+  "2024-08-27": {
+    "true_positive": 394,
+    "true_negative": 723,
+    "false_positive": 67,
+    "false_negative": 83
+  },
+  "2024-08-28": {
+    "true_positive": 167,
+    "true_negative": 907,
+    "false_positive": 82,
+    "false_negative": 35
+  },
+  "2024-08-29": {
+    "true_positive": 240,
+    "true_negative": 2014,
+    "false_positive": 103,
+    "false_negative": 138
+  },
+  "2024-08-30": {
+    "true_positive": 65,
+    "true_negative": 1578,
+    "false_positive": 67,
+    "false_negative": 22
+  },
+  "2024-08-31": {
+    "true_positive": 69,
+    "true_negative": 542,
+    "false_positive": 40,
+    "false_negative": 9
+  },
+  "2024-09-02": {
+    "true_positive": 325,
+    "true_negative": 305,
+    "false_positive": 16,
+    "false_negative": 45
+  },
+  "2024-09-03": {
+    "true_positive": 119,
+    "true_negative": 705,
+    "false_positive": 2,
+    "false_negative": 40
+  },
+  "2024-09-04": {
+    "true_positive": 178,
+    "true_negative": 1306,
+    "false_positive": 18,
+    "false_negative": 70
+  },
+  "2024-09-05": {
+    "true_positive": 121,
+    "true_negative": 777,
+    "false_positive": 15,
+    "false_negative": 63
+  },
+  "2024-09-06": {
+    "true_positive": 92,
+    "true_negative": 759,
+    "false_positive": 18,
+    "false_negative": 36
+  },
+  "2024-09-07": {
+    "true_positive": 110,
+    "true_negative": 2572,
+    "false_positive": 23,
+    "false_negative": 61
+  },
+  "2024-09-08": {
+    "true_positive": 478,
+    "true_negative": 2544,
+    "false_positive": 27,
+    "false_negative": 430
+  },
+  "2024-09-09": {
+    "true_positive": 62,
+    "true_negative": 355,
+    "false_positive": 10,
+    "false_negative": 113
+  },
+  "2024-09-10": {
+    "true_positive": 173,
+    "true_negative": 1743,
+    "false_positive": 73,
+    "false_negative": 148
+  },
+  "2024-09-12": {
+    "true_positive": 73,
+    "true_negative": 210,
+    "false_positive": 9,
+    "false_negative": 64
+  },
+  "2024-09-17": {
+    "true_positive": 57,
+    "true_negative": 2114,
+    "false_positive": 86,
+    "false_negative": 41
+  },
+  "2024-09-18": {
+    "true_positive": 222,
+    "true_negative": 1570,
+    "false_positive": 169,
+    "false_negative": 151
+  },
+  "2024-09-19": {
+    "true_positive": 236,
+    "true_negative": 608,
+    "false_positive": 106,
+    "false_negative": 202
+  }
+}
