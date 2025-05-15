@@ -26,6 +26,7 @@ def create_cropped_images(
     output_width: int,
     output_height: int,
 ):
+    """Extracts and crops first frame from WDD video snippets."""
     for path_to_zip in tqdm(zips_dir.rglob("*")):
         if not str(path_to_zip).endswith(".zip"):
             continue

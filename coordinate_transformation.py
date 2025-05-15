@@ -3,6 +3,11 @@ import numpy as np
 
 
 class CoordinateConverter:
+    """
+    Given the marker WDD and HD marker coordinates, finds a homography so
+    coordinates can be transformed from one system to the other.
+    """
+
     def __init__(self, src_markers, dst_markers):
         src_markers = np.array(src_markers, dtype=np.float32)
         dst_markers = np.array(dst_markers, dtype=np.float32)

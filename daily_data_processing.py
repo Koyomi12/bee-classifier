@@ -23,6 +23,10 @@ FRAMEDIR_WDD = Path("/mnt/trove/wdd/wdd_output_2024/fullframes")
 
 
 def main():
+    """
+    Classifies video snippets and processes WDD data into the expected format
+    for the Bee Tag Corrector interface.
+    """
     classifier = TaggedBeeClassifierConvNet("output/model.pth")
     for zip_path in tqdm(list(ZIPS_PATH.rglob("*"))):
         if not zip_path.suffix == ".zip":
