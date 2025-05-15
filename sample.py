@@ -37,12 +37,7 @@ def extract_samples(samples_csv_path: Path, output_path: Path):
         reader = csv.DictReader(csv_file)
         for row in reader:
             sample_path = row["sample_path"]
-            # "/home/niklas/bee-data/cropped/2024-08-29/10_47_14.png"
-            # "/mnt/trove/wdd/wdd_output_2024/cam0/2024/8/2024-08-29.zip"
             year_pattern = r"20\d{2}"
-            after_year_lookahead = r"(?=-\d{2}-\d{2}/\d{2}_\d{2}_\d{2}.png)"
-            # TODO: add lookbehinds and lookaheads
-            # month_pattern = r"-(\d{2})-"
             month_pattern = r"-0([1-9])|(1[0-2])-"
             date_pattern = r"20\d{2}-\d{2}-\d{2}"
             time_num_pattern = r"\d+_\d+_\d+.png"
