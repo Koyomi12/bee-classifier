@@ -2,10 +2,10 @@ from pathlib import Path
 from zipfile import ZipFile
 
 from PIL import Image
-from PIL.Image import Image as PILImage
 from tqdm import tqdm
 
 from daily_data_processing import IMAGE_SIZE
+from image_cropping import crop_center
 
 ZIPPED_DIR = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
 CROPPED_IMAGE_DIR = Path("/home/niklas/bee-data/cropped/")
@@ -50,14 +50,3 @@ def create_cropped_images(
 
                         target_path = current_target_dir / filename
                         cropped_image.save(target_path)
-
-
-def crop_center(image: PILImage, output_width: int, output_height: int):
-    image_width, image_height = image.size
-    left = (image_width - output_width) // 2
-    top = (image_height - output_height) // 2
-    return image.crop((left, top, left + output_width, top + output_height))
-
-
-if __name__ == "__main__":
-    main()

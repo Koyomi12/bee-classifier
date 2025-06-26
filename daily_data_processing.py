@@ -10,7 +10,7 @@ from ffmpeg import FFmpeg
 from PIL import Image
 from tqdm import tqdm
 
-from crop_images import crop_center
+from image_cropping import crop_center
 from inference import TaggedBeeClassifierConvNet, class_labels
 
 IMAGE_SIZE = 50

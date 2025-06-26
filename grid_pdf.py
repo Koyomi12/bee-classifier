@@ -9,7 +9,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 from PIL import Image
 from tqdm import tqdm
 
-from crop_images import crop_center
+from image_cropping import crop_center
 from inference import TaggedBeeClassifierConvNet
 
 TAGGED = "tagged"
