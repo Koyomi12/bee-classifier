@@ -42,9 +42,12 @@ def create_cropped_images(
                 with zip_file.open(filename) as video_file:
                     with Image.open(video_file) as image:
                         cropped_image = crop_center(image, output_width, output_height)
+
+                        # Flatten output directory structure
                         filename = video_file.name.replace(
                             "/frames.apng", ".png"
                         ).replace("/", "_")
+
                         target_path = current_target_dir / filename
                         cropped_image.save(target_path)
 
