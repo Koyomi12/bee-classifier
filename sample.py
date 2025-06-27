@@ -6,7 +6,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from inference import TaggedBeeClassifierConvNet, class_labels, dict_to_csv
+from inference import TaggedBeeClassifierConvNet, class_labels
 
 ZIPPED_WDD_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
 
@@ -57,6 +57,14 @@ def extract_samples(samples_csv_path: Path, output_path: Path):
                     destination_dir.mkdir(parents=True, exist_ok=True)
                     archive.extract(file, destination_dir)
                     continue
+
+
+def dict_to_csv(data, filename: Path | str) -> None:
+    filename = Path(filename)
+    with filename.open("w", newline="") as csv_file:
+        writer = csv.writer(csv_file, lineterminator="\n")
+        writer.writerow(data.keys())
+        writer.writerows(zip(*data.values()))
 
 
 if __name__ == "__main__":
