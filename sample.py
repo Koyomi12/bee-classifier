@@ -37,14 +37,32 @@ def extract_samples(samples_csv_path: Path, output_path: Path):
         reader = csv.DictReader(csv_file)
         for row in reader:
             sample_path = row["sample_path"]
+
             year_pattern = r"20\d{2}"
             month_pattern = r"-0([1-9])|(1[0-2])-"
             date_pattern = r"20\d{2}-\d{2}-\d{2}"
             time_num_pattern = r"\d+_\d+_\d+.png"
-            year = re.search(year_pattern, sample_path).group()
-            month = re.search(month_pattern, sample_path).group(1)
-            date = re.search(date_pattern, sample_path).group()
-            time_number = re.search(time_num_pattern, sample_path).group()
+
+            year_match = re.search(year_pattern, sample_path)
+            month_match = re.search(month_pattern, sample_path)
+            date_match = re.search(date_pattern, sample_path)
+            time_number_match = re.search(time_num_pattern, sample_path)
+
+            if (
+                year_match is None
+                or month_match is None
+                or date_match is None
+                or time_number_match is None
+            ):
+                raise ValueError(
+                    f"Failed to extract date/time info from path: {sample_path}"
+                )
+
+            year = year_match.group()
+            month = month_match.group(1)
+            date = date_match.group()
+            time_number = time_number_match.group()
+
             sample_filename = re.sub("_", "/", time_number).replace(
                 ".png", "/frames.apng"
             )
