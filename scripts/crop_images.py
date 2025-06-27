@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -7,16 +8,16 @@ from tqdm import tqdm
 from daily_data_processing import IMAGE_SIZE
 from image_cropping import crop_center
 
-ZIPPED_DIR = Path("/mnt/trove/wdd/wdd_output_2024/cam0/2024/")
-CROPPED_IMAGE_DIR = Path("/home/niklas/bee-data/cropped/")
-
 
 def main():
+    parser = init_argparse()
+    args = parser.parse_args()
+
     create_cropped_images(
-        ZIPPED_DIR,
-        CROPPED_IMAGE_DIR,
-        IMAGE_SIZE,
-        IMAGE_SIZE,
+        zips_dir=args.zipped_wdd_data_dir,
+        target_dir=args.cropped_image_output_dir,
+        output_width=IMAGE_SIZE,
+        output_height=IMAGE_SIZE,
     )
 
 
@@ -50,3 +51,25 @@ def create_cropped_images(
 
                         target_path = current_target_dir / filename
                         cropped_image.save(target_path)
+
+
+def init_argparse() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        usage="%(prog)s <zipped_wdd_data_dir> <cropped_image_output_dir>",
+        description=("Extracts and crops the first frame from APNG video snippets"),
+    )
+    parser.add_argument(
+        "zipped_wdd_data_dir",
+        type=Path,
+        help="Path to directory containing zip archives of .APNG video snippets",
+    )
+    parser.add_argument(
+        "cropped_image_output_dir",
+        type=Path,
+        help="Path to directory containing zip archives of .APNG video snippets",
+    )
+    return parser
+
+
+if __name__ == "__main__":
+    main()
