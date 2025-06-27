@@ -17,6 +17,7 @@ UNTAGGED = "untagged"
 class_labels = (TAGGED, UNTAGGED)
 
 
+# TODO: probably move this to experiments, but keep this for the Koyomi owned repositories as it was declared to be in this repo in the bachelor's thesis. Remove it for the biorobotics repo.
 def main():
     cropped_image_dir = Path("/home/niklas/bee-data/cropped/")
     classifier = TaggedBeeClassifierConvNet("output/model.pth")

@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 
 
+# TODO: remove this
 class CoordinateConverter:
     """
     Given the marker WDD and HD marker coordinates, finds a homography so

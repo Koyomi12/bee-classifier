@@ -6,6 +6,7 @@ from tqdm import tqdm
 from daily_data_processing import ZIPS_PATH, is_wood_in_frame
 
 
+# TODO: probably moves this to experiments repository as it has nothing to do with the classifier
 def main():
     """
     Gives a daily overview of the number of detections, videos  per dance type

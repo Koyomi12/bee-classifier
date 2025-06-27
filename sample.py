@@ -8,6 +8,7 @@ from PIL import Image
 
 from inference import TaggedBeeClassifierConvNet, class_labels
 
+# TODO: turn this into argparse argument
 ZIPPED_WDD_PATH = Path("/mnt/trove/wdd/wdd_output_2024/cam0/")
 
 
@@ -85,8 +86,11 @@ def dict_to_csv(data, filename: Path | str) -> None:
         writer.writerows(zip(*data.values()))
 
 
+# TODO: move this into main function
 if __name__ == "__main__":
+    # TODO: uncomment this
     # get_samples(Path("/home/niklas/bee-data/cropped/"), 100)
+    # TODO: make sure to check if file already exists and if it does, don't overwrite it
     samples_csv_path = Path.cwd() / "output" / "samples.csv"
     destination_path = Path.cwd() / "output" / "samples"
     extract_samples(samples_csv_path, destination_path)
