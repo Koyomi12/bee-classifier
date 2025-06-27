@@ -58,7 +58,9 @@ class TaggedBeeClassifierConvNet:
             for inputs, _ in tqdm(dataloader):
                 inputs = inputs.to(self.device, non_blocking=True)
                 outputs = self.model(inputs)
-                predictions, confidences = self.model.postprocess_predictions(outputs)
+                predictions, confidences, _ = self.model.postprocess_predictions(
+                    outputs
+                )
                 all_predictions = np.concatenate(
                     (all_predictions, predictions), dtype=int
                 )
